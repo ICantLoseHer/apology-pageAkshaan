@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            padding: 50px;
+            overflow: auto; /* Fixes scrolling issue */
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        button {
+            background-color: white;
+            color: #ff758c;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #ffebee;
+        }
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            background: red;
+            clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 50% 80%, 20% 100%, 0% 30%);
+            animation: float 4s infinite;
+            opacity: 0.8;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <audio id="bg-music" loop>
+        <source src="https://raw.githubusercontent.com/ICantLoseHer/apology-music/main/apology.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <h1>I'm Really Sorry Maryam</h1>
+        <p>My love, I understand I haven't been the best for a long while now and your mental health is affected due to it, I deeply regret it. Hurting you was never my intention, and I feel miserable about it. I hope we can put all this behind us soon.</p>
+        <p>You mean more than the world to me, and I promise to be a better friend to you. ❤️</p>
+        <button onclick="revealMessage()">Click when you aren't angry at me</button>
+        <p class="hidden-message" id="message">I love you more than words can ever express! And hopefully you are not mad at me while reading this so please gimme a hug🥹 <br> <br> This is what peace looks like ❤️</p>
+        <img id="apology-image" class="hidden-image" src="https://i.imgur.com/WJTJSu3.png" alt="A heartfelt apology" width="300" style="border-radius: 10px; margin-top: 15px; display: none;">
+        <button onclick="toggleMusic()">Click when you are mad at me (turn your volume up)</button>
+    </div>
+    <div class="hearts"></div>
+    <script>
+        function revealMessage() {
+            document.getElementById('message').style.display = 'block';
+            document.getElementById('apology-image').style.display = 'block'; // Show the image
+        }
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.querySelector('.hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+        
+        function toggleMusic() {
+            var music = document.getElementById('bg-music');
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+    </script>
+</body>
+</html>
